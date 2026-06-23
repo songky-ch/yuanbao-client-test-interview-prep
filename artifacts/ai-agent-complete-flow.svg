@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600">
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 48px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172033; }
+      .subtitle { font: 400 24px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #5e6a7d; }
+      .layer-title { font: 700 28px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #263247; }
+      .box-title { font: 700 24px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172033; }
+      .box-text { font: 400 19px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #4d586b; }
+      .small { font: 400 17px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #5e6a7d; }
+      .layer { fill: #ffffff; stroke: #dde3ee; stroke-width: 2; rx: 20; }
+      .entry { fill: #eaf3ff; stroke: #8bb8f0; stroke-width: 2.5; rx: 14; }
+      .core { fill: #eef8f1; stroke: #86c996; stroke-width: 2.5; rx: 14; }
+      .decision { fill: #fff5df; stroke: #e3b75d; stroke-width: 2.5; }
+      .ability { fill: #f3efff; stroke: #aa96df; stroke-width: 2.5; rx: 14; }
+      .exec { fill: #fff0ed; stroke: #e59484; stroke-width: 2.5; rx: 14; }
+      .result { fill: #ecfbfa; stroke: #77c9c2; stroke-width: 2.5; rx: 14; }
+      .note { fill: #fbfcff; stroke: #cbd5e4; stroke-width: 2; rx: 12; }
+      .line { fill: none; stroke: #48566f; stroke-width: 3; marker-end: url(#arrow); }
+      .soft-line { fill: none; stroke: #8894a8; stroke-width: 2.5; marker-end: url(#arrow-soft); }
+      .dash-line { fill: none; stroke: #8894a8; stroke-width: 2.5; stroke-dasharray: 9 8; marker-end: url(#arrow-soft); }
+      .label { font: 700 18px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #48566f; }
+    </style>
+    <marker id="arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto">
+      <path d="M 0 0 L 13 6.5 L 0 13 z" fill="#48566f"/>
+    </marker>
+    <marker id="arrow-soft" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#8894a8"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="2400" height="1600"/>
+  <text class="title" x="120" y="90">AI Agent 完整实现流程图</text>
+  <text class="subtitle" x="120" y="132">基于原型整理: 入口接入 -> 鉴权与分流 -> Agent 规划 -> 能力调用 -> 执行回传</text>
+
+  <rect class="layer" x="90" y="180" width="2220" height="180"/>
+  <text class="layer-title" x="120" y="225">1. 用户入口层</text>
+  <rect class="entry" x="260" y="250" width="260" height="76"/>
+  <text class="box-title" x="325" y="282">WeLink</text>
+  <text class="box-text" x="310" y="310">企业用户入口</text>
+  <rect class="entry" x="660" y="250" width="300" height="76"/>
+  <text class="box-title" x="735" y="282">Browser 插件</text>
+  <text class="box-text" x="710" y="310">附件上传 / 前端扩展</text>
+  <rect class="note" x="1510" y="242" width="560" height="92"/>
+  <text class="box-title" x="1545" y="276">入口说明</text>
+  <text class="box-text" x="1545" y="306">WeLink 走企业 IM 链路, Browser 走插件/中间件链路。</text>
+
+  <rect class="layer" x="90" y="405" width="2220" height="205"/>
+  <text class="layer-title" x="120" y="450">2. 统一接入与上下文层</text>
+  <rect class="entry" x="220" y="490" width="340" height="82"/>
+  <text class="box-title" x="315" y="522">UniKnow</text>
+  <text class="box-text" x="265" y="550">账号绑定 / 域名绑定 / 统一接入</text>
+  <rect class="entry" x="660" y="490" width="340" height="82"/>
+  <text class="box-title" x="750" y="522">中间件接口</text>
+  <text class="box-text" x="700" y="550">附件上传 / 文件预处理 / 返回 OK</text>
+  <rect class="core" x="1160" y="480" width="420" height="102"/>
+  <text class="box-title" x="1245" y="515">Race Agent Service</text>
+  <text class="box-text" x="1210" y="545">Agent 总入口 / 会话上下文 / 路由入口</text>
+  <rect class="note" x="1720" y="480" width="400" height="102"/>
+  <text class="box-title" x="1760" y="515">核心修正</text>
+  <text class="box-text" x="1760" y="545">统一入口不直接等于 Agent, 先做鉴权和分流。</text>
+
+  <rect class="layer" x="90" y="655" width="2220" height="245"/>
+  <text class="layer-title" x="120" y="700">3. 鉴权、意图识别与分流层</text>
+  <rect class="core" x="190" y="755" width="330" height="92"/>
+  <text class="box-title" x="265" y="790">鉴权与上下文</text>
+  <text class="box-text" x="225" y="820">个人鉴权 / 群组授权 / 知识库权限</text>
+  <polygon class="decision" points="720,740 960,800 720,860 480,800"/>
+  <text class="box-title" x="610" y="793">规则意图分流</text>
+  <text class="box-text" x="612" y="823">问题类型判断</text>
+  <rect class="exec" x="1130" y="735" width="360" height="112"/>
+  <text class="box-title" x="1200" y="775">RaceRobot Service</text>
+  <text class="box-text" x="1180" y="805">有状态机器人服务</text>
+  <text class="box-text" x="1180" y="832">规则类 / 流程类 / 异步任务</text>
+  <rect class="core" x="1670" y="735" width="360" height="112"/>
+  <text class="box-title" x="1775" y="775">Race Agent</text>
+  <text class="box-text" x="1718" y="805">复杂任务规划与工具编排</text>
+  <text class="box-text" x="1718" y="832">ReAct 为主, Plan and Solve 可选</text>
+
+  <rect class="layer" x="90" y="945" width="2220" height="300"/>
+  <text class="layer-title" x="120" y="990">4. Agent 规划与能力调用层</text>
+  <rect class="core" x="190" y="1060" width="310" height="92"/>
+  <text class="box-title" x="280" y="1095">模型层</text>
+  <text class="box-text" x="235" y="1125">Qwen3 / 8B / 数据完备性判断</text>
+  <rect class="core" x="615" y="1060" width="310" height="92"/>
+  <text class="box-title" x="705" y="1095">规划层</text>
+  <text class="box-text" x="655" y="1125">任务拆解 / ToolCall / 工作流推理</text>
+  <rect class="ability" x="1030" y="1032" width="220" height="72"/>
+  <text class="box-title" x="1085" y="1075">API 插件</text>
+  <rect class="ability" x="1290" y="1032" width="220" height="72"/>
+  <text class="box-title" x="1345" y="1075">MCP 插件</text>
+  <rect class="ability" x="1550" y="1032" width="220" height="72"/>
+  <text class="box-title" x="1615" y="1075">工作流</text>
+  <rect class="ability" x="1810" y="1032" width="220" height="72"/>
+  <text class="box-title" x="1872" y="1075">子 Agent</text>
+  <rect class="ability" x="1030" y="1142" width="220" height="72"/>
+  <text class="box-title" x="1082" y="1185">知识库</text>
+  <rect class="ability" x="1290" y="1142" width="220" height="72"/>
+  <text class="box-title" x="1346" y="1185">数据虚拟化</text>
+  <rect class="ability" x="1550" y="1142" width="220" height="72"/>
+  <text class="box-title" x="1605" y="1185">文件处理</text>
+  <rect class="ability" x="1810" y="1142" width="220" height="72"/>
+  <text class="box-title" x="1865" y="1185">领域工具</text>
+
+  <rect class="layer" x="90" y="1290" width="2220" height="190"/>
+  <text class="layer-title" x="120" y="1335">5. 执行、汇总与回传层</text>
+  <rect class="exec" x="190" y="1375" width="300" height="72"/>
+  <text class="box-title" x="255" y="1420">Race MCP Service</text>
+  <rect class="exec" x="570" y="1375" width="300" height="72"/>
+  <text class="box-title" x="650" y="1420">UMTask / 后台</text>
+  <rect class="exec" x="950" y="1375" width="300" height="72"/>
+  <text class="box-title" x="1025" y="1420">业务系统 / 工具</text>
+  <rect class="result" x="1370" y="1360" width="310" height="102"/>
+  <text class="box-title" x="1460" y="1398">结果汇总</text>
+  <text class="box-text" x="1425" y="1428">执行结果 / 文件结果 / 查询结果</text>
+  <rect class="result" x="1810" y="1360" width="310" height="102"/>
+  <text class="box-title" x="1898" y="1398">回答生成</text>
+  <text class="box-text" x="1860" y="1428">总结 / 推荐下一步 / 回传渠道</text>
+
+  <path class="line" d="M390 326 L390 490"/>
+  <path class="line" d="M810 326 L810 490"/>
+  <path class="line" d="M560 531 L1160 531"/>
+  <path class="line" d="M1000 531 L1160 531"/>
+  <path class="line" d="M1370 582 L355 755"/>
+  <path class="line" d="M520 800 L480 800"/>
+  <path class="line" d="M960 800 L1130 791"/>
+  <text class="label" x="990" y="766">简单/规则类</text>
+  <path class="line" d="M960 800 L1670 791"/>
+  <text class="label" x="1490" y="766">复杂任务</text>
+  <path class="soft-line" d="M1850 847 L1850 945 L345 945 L345 1060"/>
+  <path class="line" d="M500 1106 L615 1106"/>
+  <path class="line" d="M925 1106 L1030 1068"/>
+  <path class="line" d="M925 1106 L1290 1068"/>
+  <path class="line" d="M925 1106 L1550 1068"/>
+  <path class="line" d="M925 1106 L1810 1068"/>
+  <path class="line" d="M925 1106 L1030 1178"/>
+  <path class="line" d="M925 1106 L1290 1178"/>
+  <path class="line" d="M925 1106 L1550 1178"/>
+  <path class="line" d="M925 1106 L1810 1178"/>
+
+  <path class="soft-line" d="M1400 1104 L340 1375"/>
+  <path class="soft-line" d="M1660 1104 L1100 1375"/>
+  <path class="soft-line" d="M1920 1214 L1100 1375"/>
+  <path class="soft-line" d="M1310 847 L720 1375"/>
+  <path class="line" d="M490 1411 L570 1411"/>
+  <path class="line" d="M870 1411 L950 1411"/>
+  <path class="line" d="M1250 1411 L1370 1411"/>
+  <path class="line" d="M1680 1411 L1810 1411"/>
+  <path class="line" d="M1965 1360 L1965 320 L960 320"/>
+  <path class="dash-line" d="M1965 1360 L1965 250 L520 250"/>
+
+  <rect class="note" x="1170" y="195" width="560" height="125"/>
+  <text class="box-title" x="1210" y="235">合理性判断</text>
+  <text class="box-text" x="1210" y="267">整体实现逻辑合理: 接入、鉴权、分流、规划、工具执行、回传闭环完整。</text>
+  <text class="box-text" x="1210" y="297">完善点: 将规则机器人服务与复杂 Agent 编排分开, 避免职责混淆。</text>
+
+  <text class="small" x="120" y="1540">边界说明: 本图未脱离原型, 仅将原图中的 RaceRobot、Race Agent、MCP、Browser 插件、鉴权和能力组成统一到一张端到端流程图中。</text>
+</svg>
