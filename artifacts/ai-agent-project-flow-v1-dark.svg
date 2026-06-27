@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="4760" viewBox="0 0 1440 4760">
+  <defs>
+    <style>
+      .bg { fill: #070707; }
+      .box { fill: #232323; stroke: #777; stroke-width: 2; rx: 14; }
+      .box2 { fill: #1f1f1f; stroke: #777; stroke-width: 2; rx: 14; }
+      .diamond { fill: #171717; stroke: #777; stroke-width: 2; }
+      .rag { fill: #252331; stroke: #8c84b8; stroke-width: 2; rx: 14; }
+      .warn { fill: #2b2421; stroke: #a9826e; stroke-width: 2; rx: 14; }
+      .text { font: 400 24px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #e8e8e8; }
+      .title { font: 700 28px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #ffffff; }
+      .small { font: 400 20px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #d7d7d7; }
+      .tiny { font: 400 18px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #cfcfcf; }
+      .line { fill: none; stroke: #888; stroke-width: 2.5; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #777; stroke-width: 2.2; stroke-dasharray: 9 8; marker-end: url(#arrow); }
+      .label { font: 400 19px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #e2e2e2; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1440" height="4760"/>
+
+  <!-- 1. Entry -->
+  <rect class="box" x="530" y="45" width="380" height="82"/>
+  <text class="title" x="695" y="80" text-anchor="middle">用户</text>
+  <text class="small" x="720" y="110" text-anchor="middle">WeLink / Web / API / APP</text>
+
+  <rect class="box" x="500" y="185" width="440" height="92"/>
+  <text class="title" x="720" y="222" text-anchor="middle">UniKnow 平台</text>
+  <text class="small" x="720" y="252" text-anchor="middle">统一接入, 账号绑定, 域名绑定</text>
+
+  <rect class="box" x="490" y="335" width="460" height="96"/>
+  <text class="title" x="720" y="372" text-anchor="middle">请求入口</text>
+  <text class="small" x="720" y="402" text-anchor="middle">用户消息 / 附件 / TraceID / 会话上下文</text>
+
+  <polygon class="diamond" points="720,505 970,610 720,715 470,610"/>
+  <text class="title" x="720" y="593" text-anchor="middle">权限校验</text>
+  <text class="small" x="720" y="624" text-anchor="middle">个人权限 / 部门权限</text>
+  <text class="small" x="720" y="654" text-anchor="middle">工具权限 / 知识库权限</text>
+
+  <rect class="warn" x="260" y="800" width="330" height="92"/>
+  <text class="title" x="425" y="836" text-anchor="middle">鉴权失败</text>
+  <text class="small" x="425" y="866" text-anchor="middle">返回无权限或登录失效</text>
+
+  <rect class="box" x="810" y="790" width="400" height="105"/>
+  <text class="title" x="1010" y="828" text-anchor="middle">Race Agent Service</text>
+  <text class="small" x="1010" y="858" text-anchor="middle">统一编排入口</text>
+  <text class="small" x="1010" y="884" text-anchor="middle">负责分流, 上下文, 路由</text>
+
+  <rect class="box2" x="385" y="960" width="260" height="76"/>
+  <text class="title" x="515" y="1007" text-anchor="middle">返回用户</text>
+
+  <!-- 2. Intent and agent routing -->
+  <polygon class="diamond" points="720,990 995,1095 720,1200 445,1095"/>
+  <text class="title" x="720" y="1078" text-anchor="middle">是否进入 Agent?</text>
+  <text class="small" x="720" y="1110" text-anchor="middle">规则类 / 闲聊 / 工具类 / 复杂任务</text>
+
+  <rect class="box" x="195" y="1295" width="420" height="96"/>
+  <text class="title" x="405" y="1332" text-anchor="middle">不进入 Agent</text>
+  <text class="small" x="405" y="1362" text-anchor="middle">普通问答 / 固定流程 / Webhooks API</text>
+
+  <rect class="box" x="805" y="1290" width="430" height="110"/>
+  <text class="title" x="1020" y="1328" text-anchor="middle">进入 Agent</text>
+  <text class="small" x="1020" y="1358" text-anchor="middle">复杂任务, 需要规划与工具调用</text>
+  <text class="small" x="1020" y="1386" text-anchor="middle">单轮 Agent: 不依赖多轮会话恢复</text>
+
+  <!-- 3. Single-turn context check -->
+  <polygon class="diamond" points="720,1495 1045,1610 720,1725 395,1610"/>
+  <text class="title" x="720" y="1588" text-anchor="middle">上下文是否足够?</text>
+  <text class="small" x="720" y="1620" text-anchor="middle">任务目标 / 参数 / 附件 / 权限上下文</text>
+  <text class="tiny" x="720" y="1648" text-anchor="middle">单轮限制: 不足时不进入追问闭环</text>
+
+  <rect class="warn" x="120" y="1815" width="430" height="110"/>
+  <text class="title" x="335" y="1854" text-anchor="middle">返回缺失参数说明</text>
+  <text class="small" x="335" y="1884" text-anchor="middle">一次性澄清问题</text>
+  <text class="small" x="335" y="1912" text-anchor="middle">本轮结束, 不等待用户补充后续跑</text>
+
+  <!-- 4. RAG decision -->
+  <polygon class="diamond" points="720,1815 1030,1930 720,2045 410,1930"/>
+  <text class="title" x="720" y="1908" text-anchor="middle">是否需要 RAG?</text>
+  <text class="small" x="720" y="1940" text-anchor="middle">是否依赖企业知识 / 规范 / 文档</text>
+  <text class="tiny" x="720" y="1968" text-anchor="middle">在 Prompt / State 构建前判断</text>
+
+  <rect class="rag" x="930" y="2105" width="430" height="150"/>
+  <text class="title" x="1145" y="2144" text-anchor="middle">RAG 触发逻辑</text>
+  <text class="tiny" x="1145" y="2174" text-anchor="middle">需要: 制度, 规范, 流程, 接口文档</text>
+  <text class="tiny" x="1145" y="2202" text-anchor="middle">需要: 内部字段 / 工具参数映射</text>
+  <text class="tiny" x="1145" y="2230" text-anchor="middle">不需要: 当前输入足够或实时接口查询</text>
+
+  <rect class="rag" x="935" y="2320" width="420" height="95"/>
+  <text class="title" x="1145" y="2358" text-anchor="middle">RAG 检索链路</text>
+  <text class="small" x="1145" y="2388" text-anchor="middle">Query Rewrite -> 权限过滤</text>
+
+  <rect class="rag" x="935" y="2475" width="420" height="95"/>
+  <text class="title" x="1145" y="2513" text-anchor="middle">知识召回</text>
+  <text class="small" x="1145" y="2543" text-anchor="middle">Retrieve -> TopK -> ReRank</text>
+
+  <polygon class="diamond" points="1145,2635 1375,2715 1145,2795 915,2715"/>
+  <text class="title" x="1145" y="2705" text-anchor="middle">召回是否可用?</text>
+  <text class="small" x="1145" y="2735" text-anchor="middle">命中 / 未命中</text>
+
+  <rect class="rag" x="660" y="2318" width="330" height="88"/>
+  <text class="title" x="825" y="2354" text-anchor="middle">注入 RAG 上下文</text>
+  <text class="small" x="825" y="2384" text-anchor="middle">知识片段进入 Prompt</text>
+
+  <rect class="warn" x="390" y="2505" width="390" height="94"/>
+  <text class="title" x="585" y="2542" text-anchor="middle">不注入 RAG</text>
+  <text class="small" x="585" y="2572" text-anchor="middle">标记知识不足或按普通 Agent 执行</text>
+
+  <!-- 5. Prompt and Agent -->
+  <rect class="box" x="500" y="2865" width="440" height="110"/>
+  <text class="title" x="720" y="2905" text-anchor="middle">Prompt / State 构建</text>
+  <text class="small" x="720" y="2935" text-anchor="middle">用户输入 + 附件 + RAG + 权限</text>
+  <text class="small" x="720" y="2963" text-anchor="middle">工具 Schema / 任务状态</text>
+
+  <rect class="box" x="500" y="3045" width="440" height="96"/>
+  <text class="title" x="720" y="3082" text-anchor="middle">Agent Executor</text>
+  <text class="small" x="720" y="3112" text-anchor="middle">Plan / Thought / Action / Observation</text>
+
+  <polygon class="diamond" points="345,3095 605,3180 345,3265 85,3180"/>
+  <text class="title" x="345" y="3162" text-anchor="middle">下一步是否明确?</text>
+  <text class="small" x="345" y="3194" text-anchor="middle">参数 / 工具 / 目标 / 输出</text>
+
+  <rect class="warn" x="65" y="3345" width="420" height="95"/>
+  <text class="title" x="275" y="3382" text-anchor="middle">返回澄清问题并结束</text>
+  <text class="small" x="275" y="3412" text-anchor="middle">单轮 Agent 不进入多轮追问</text>
+
+  <rect class="box" x="555" y="3298" width="350" height="90"/>
+  <text class="title" x="730" y="3334" text-anchor="middle">Tool Selection</text>
+  <text class="small" x="730" y="3364" text-anchor="middle">按权限和 Schema 选择工具</text>
+
+  <rect class="box" x="555" y="3450" width="350" height="90"/>
+  <text class="title" x="730" y="3486" text-anchor="middle">参数组装与校验</text>
+  <text class="small" x="730" y="3516" text-anchor="middle">从输入 / RAG / 上下文取参数</text>
+
+  <rect class="box" x="555" y="3600" width="350" height="90"/>
+  <text class="title" x="730" y="3636" text-anchor="middle">Tool Call</text>
+  <text class="small" x="730" y="3666" text-anchor="middle">API / MCP / 工作流 / 子 Agent</text>
+
+  <rect class="box" x="555" y="3755" width="350" height="90"/>
+  <text class="title" x="730" y="3791" text-anchor="middle">Observation</text>
+  <text class="small" x="730" y="3821" text-anchor="middle">工具结果 / 错误 / 业务状态</text>
+
+  <polygon class="diamond" points="730,3908 1005,4008 730,4108 455,4008"/>
+  <text class="title" x="730" y="3990" text-anchor="middle">结果是否足够回答?</text>
+  <text class="small" x="730" y="4022" text-anchor="middle">可回答 / 需终止 / 工具失败</text>
+
+  <rect class="box" x="555" y="4185" width="350" height="95"/>
+  <text class="title" x="730" y="4222" text-anchor="middle">结果汇总</text>
+  <text class="small" x="730" y="4252" text-anchor="middle">工具结果 + RAG 依据 + 业务结论</text>
+
+  <rect class="box" x="555" y="4345" width="350" height="95"/>
+  <text class="title" x="730" y="4382" text-anchor="middle">生成最终回答</text>
+  <text class="small" x="730" y="4412" text-anchor="middle">返回答案 / 原因 / 下一步建议</text>
+
+  <rect class="box" x="555" y="4510" width="350" height="90"/>
+  <text class="title" x="730" y="4558" text-anchor="middle">返回用户</text>
+
+  <!-- Need larger canvas flow below viewBox, scaled through CSS-free transform by clipping is not OK. -->
+  <!-- Lines -->
+  <path class="line" d="M720 127 V185"/>
+  <path class="line" d="M720 277 V335"/>
+  <path class="line" d="M720 431 V505"/>
+  <path class="line" d="M590 690 H425 V800"/>
+  <text class="label" x="455" y="735">不通过</text>
+  <path class="line" d="M850 690 H1010 V790"/>
+  <text class="label" x="945" y="735">通过</text>
+  <path class="line" d="M425 892 V960"/>
+  <path class="line" d="M1010 895 V970 H720 V990"/>
+  <path class="line" d="M570 1170 H405 V1295"/>
+  <text class="label" x="455" y="1240">否</text>
+  <path class="line" d="M870 1170 H1020 V1290"/>
+  <text class="label" x="955" y="1240">是</text>
+  <path class="line" d="M1020 1400 V1450 H720 V1495"/>
+  <path class="line" d="M525 1700 H335 V1815"/>
+  <text class="label" x="355" y="1765">否</text>
+  <path class="line" d="M720 1725 V1815"/>
+  <text class="label" x="745" y="1775">是</text>
+  <path class="line" d="M1030 1930 H1145 V2105"/>
+  <text class="label" x="1075" y="1900">需要</text>
+  <path class="line" d="M720 2045 V2865"/>
+  <text class="label" x="745" y="2140">不需要</text>
+  <path class="line" d="M1145 2255 V2320"/>
+  <path class="line" d="M1145 2415 V2475"/>
+  <path class="line" d="M1145 2570 V2635"/>
+  <path class="line" d="M1035 2780 H825 V2406"/>
+  <text class="label" x="940" y="2810">命中</text>
+  <path class="line" d="M915 2715 H585 V2505"/>
+  <text class="label" x="760" y="2685">未命中</text>
+  <path class="line" d="M825 2406 V2650 H720 V2865"/>
+  <path class="line" d="M585 2599 V2665 H720 V2865"/>
+  <path class="line" d="M720 2975 V3045"/>
+  <path class="line" d="M605 3180 H730 V3298"/>
+  <text class="label" x="615" y="2990">明确</text>
+  <path class="line" d="M170 3245 H275 V3345"/>
+  <text class="label" x="200" y="3145">不明确</text>
+  <path class="line" d="M730 3388 V3450"/>
+  <path class="line" d="M730 3540 V3600"/>
+  <path class="line" d="M730 3690 V3755"/>
+  <path class="line" d="M730 3845 V3908"/>
+  <path class="line" d="M730 4108 V4185"/>
+  <text class="label" x="755" y="4148">足够</text>
+  <path class="line" d="M730 4280 V4345"/>
+  <path class="line" d="M730 4440 V4510"/>
+  <path class="dash" d="M455 4008 H275 V3440"/>
+  <text class="label" x="295" y="3970">不足 / 工具失败</text>
+
+  <text class="tiny" x="720" y="4665" text-anchor="middle">AI Agent v1 项目流程图: 仅在原图基础补充 RAG 判断与单轮缺参结束逻辑</text>
+</svg>

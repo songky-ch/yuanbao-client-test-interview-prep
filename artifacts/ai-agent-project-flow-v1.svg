@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3200" height="2600" viewBox="0 0 3200 2600">
+  <defs>
+    <style>
+      .bg { fill: #f6f8fc; }
+      .title { font: 700 58px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #162033; }
+      .subtitle { font: 400 28px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #5d687a; }
+      .section { fill: #ffffff; stroke: #d8e0ec; stroke-width: 2.5; rx: 24; }
+      .box { fill: #eaf3ff; stroke: #8ab9f5; stroke-width: 3; rx: 18; }
+      .core { fill: #edf9f1; stroke: #7bc88f; stroke-width: 3; rx: 18; }
+      .decision { fill: #fff7e1; stroke: #e1b553; stroke-width: 3; }
+      .rag { fill: #f3efff; stroke: #aa94e4; stroke-width: 3; rx: 18; }
+      .tool { fill: #fff0ed; stroke: #ee9384; stroke-width: 3; rx: 18; }
+      .result { fill: #eafbf9; stroke: #70c9c1; stroke-width: 3; rx: 18; }
+      .note { fill: #fbfcff; stroke: #c7d1df; stroke-width: 2.5; rx: 16; }
+      .section-title { font: 700 31px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #263247; }
+      .box-title { font: 700 27px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172033; }
+      .box-text { font: 400 22px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #526073; }
+      .small { font: 400 20px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #5d687a; }
+      .label { font: 700 21px Arial, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #41506a; }
+      .line { fill: none; stroke: #42516a; stroke-width: 4; marker-end: url(#arrow); }
+      .soft-line { fill: none; stroke: #8a96aa; stroke-width: 3.4; marker-end: url(#arrow-soft); }
+      .dash-line { fill: none; stroke: #8a96aa; stroke-width: 3.2; stroke-dasharray: 12 10; marker-end: url(#arrow-soft); }
+      .bus { fill: none; stroke: #6b7890; stroke-width: 4; }
+    </style>
+    <marker id="arrow" markerWidth="16" markerHeight="16" refX="12" refY="8" orient="auto">
+      <path d="M 0 0 L 16 8 L 0 16 z" fill="#42516a"/>
+    </marker>
+    <marker id="arrow-soft" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M 0 0 L 14 7 L 0 14 z" fill="#8a96aa"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="3200" height="2600"/>
+  <text class="title" x="120" y="95">AI Agent v1 项目流程图</text>
+  <text class="subtitle" x="120" y="142">单轮 Agent 约束版: 接入 -> 鉴权分流 -> 上下文判断 -> RAG 判断 -> Agent 执行 -> 工具调用 -> 结果回传</text>
+
+  <rect class="section" x="90" y="190" width="3020" height="360"/>
+  <text class="section-title" x="130" y="240">1. 入口接入</text>
+
+  <rect class="box" x="155" y="320" width="330" height="100"/>
+  <text class="box-title" x="255" y="360">用户入口</text>
+  <text class="box-text" x="205" y="392">WeLink / Browser / API</text>
+
+  <rect class="box" x="665" y="320" width="400" height="100"/>
+  <text class="box-title" x="785" y="360">UniKnow</text>
+  <text class="box-text" x="720" y="392">统一接入 / 账号绑定 / 域名绑定</text>
+
+  <rect class="core" x="1260" y="320" width="430" height="100"/>
+  <text class="box-title" x="1368" y="360">Race Agent Service</text>
+  <text class="box-text" x="1325" y="392">会话入口 / 请求编排 / 路由入口</text>
+
+  <rect class="note" x="2070" y="275" width="690" height="170"/>
+  <text class="box-title" x="2110" y="318">入口边界</text>
+  <text class="box-text" x="2110" y="356">入口层只负责接入、账号和上下文收集。</text>
+  <text class="box-text" x="2110" y="390">不要在入口层直接做复杂 Agent 决策。</text>
+
+  <path class="line" d="M485 370 H665"/>
+  <path class="line" d="M1065 370 H1260"/>
+
+  <rect class="section" x="90" y="620" width="3020" height="445"/>
+  <text class="section-title" x="130" y="670">2. 鉴权、意图识别与是否进入 Agent</text>
+
+  <rect class="core" x="155" y="790" width="390" height="120"/>
+  <text class="box-title" x="260" y="835">鉴权与上下文</text>
+  <text class="box-text" x="205" y="870">用户身份 / 部门权限 / 工具权限</text>
+  <text class="box-text" x="205" y="900">知识库权限 / 附件上下文</text>
+
+  <rect class="core" x="705" y="790" width="390" height="120"/>
+  <text class="box-title" x="805" y="835">意图识别</text>
+  <text class="box-text" x="750" y="870">闲聊 / 规则任务 / 工具任务</text>
+  <text class="box-text" x="750" y="900">复杂 Agent 任务</text>
+
+  <polygon class="decision" points="1380,750 1640,850 1380,950 1120,850"/>
+  <text class="box-title" x="1265" y="845">是否进入 Agent?</text>
+  <text class="box-text" x="1302" y="880">按任务类型分流</text>
+
+  <rect class="tool" x="1840" y="720" width="410" height="115"/>
+  <text class="box-title" x="1938" y="765">RaceRobot Service</text>
+  <text class="box-text" x="1888" y="800">规则类 / 流程类 / 固定问答</text>
+
+  <rect class="core" x="1840" y="895" width="410" height="115"/>
+  <text class="box-title" x="1962" y="940">复杂 Agent 任务</text>
+  <text class="box-text" x="1890" y="975">进入上下文完整性与 RAG 判断</text>
+
+  <path class="line" d="M1475 420 V575 H350 V790"/>
+  <path class="line" d="M545 850 H705"/>
+  <path class="line" d="M1095 850 H1120"/>
+  <path class="line" d="M1640 805 H1840"/>
+  <text class="label" x="1688" y="782">否</text>
+  <path class="line" d="M1640 890 H1740 V952 H1840"/>
+  <text class="label" x="1688" y="925">是</text>
+
+  <rect class="section" x="90" y="1135" width="3020" height="620"/>
+  <text class="section-title" x="130" y="1185">3. 单轮 Agent 前置判断: 上下文是否足够 + 是否需要 RAG</text>
+
+  <polygon class="decision" points="410,1285 690,1385 410,1485 130,1385"/>
+  <text class="box-title" x="285" y="1380">上下文是否足够?</text>
+  <text class="box-text" x="285" y="1415">参数 / 附件 / 任务目标</text>
+
+  <rect class="result" x="155" y="1570" width="510" height="115"/>
+  <text class="box-title" x="270" y="1615">返回缺失参数说明</text>
+  <text class="box-text" x="215" y="1650">一次性澄清问题 / 本轮结束</text>
+
+  <polygon class="decision" points="1030,1285 1305,1385 1030,1485 755,1385"/>
+  <text class="box-title" x="915" y="1380">是否需要 RAG?</text>
+  <text class="box-text" x="905" y="1415">是否依赖企业知识</text>
+
+  <rect class="note" x="1470" y="1210" width="635" height="250"/>
+  <text class="box-title" x="1510" y="1255">RAG 触发条件</text>
+  <text class="box-text" x="1510" y="1295">需要: 企业制度、规范、流程、接口文档、产品说明。</text>
+  <text class="box-text" x="1510" y="1330">需要: 问题要映射内部概念、字段、流程或工具参数。</text>
+  <text class="box-text" x="1510" y="1365">不需要: 当前输入已足够, 或主要依赖实时 API / MCP。</text>
+  <text class="box-text" x="1510" y="1400">不需要: 闲聊、格式转换、总结当前文本。</text>
+
+  <rect class="rag" x="1460" y="1515" width="250" height="90"/>
+  <text class="box-title" x="1512" y="1572">Query Rewrite</text>
+
+  <rect class="rag" x="1825" y="1515" width="250" height="90"/>
+  <text class="box-title" x="1880" y="1572">权限过滤</text>
+
+  <rect class="rag" x="2190" y="1515" width="250" height="90"/>
+  <text class="box-title" x="2248" y="1572">知识检索</text>
+
+  <rect class="rag" x="2555" y="1515" width="250" height="90"/>
+  <text class="box-title" x="2620" y="1572">ReRank</text>
+
+  <polygon class="decision" points="2680,1655 2905,1725 2680,1795 2455,1725"/>
+  <text class="box-title" x="2576" y="1720">召回质量是否可用?</text>
+  <text class="box-text" x="2618" y="1752">命中 / 未命中</text>
+
+  <rect class="rag" x="2110" y="1660" width="260" height="90"/>
+  <text class="box-title" x="2160" y="1718">注入 RAG 上下文</text>
+
+  <rect class="note" x="1465" y="1660" width="440" height="90"/>
+  <text class="box-title" x="1510" y="1718">不注入 RAG / 标记知识不足</text>
+
+  <path class="line" d="M2045 1010 V1090 H410 V1285"/>
+  <path class="line" d="M410 1485 V1570"/>
+  <text class="label" x="440" y="1532">否</text>
+  <path class="line" d="M690 1385 H755"/>
+  <text class="label" x="708" y="1355">是</text>
+  <path class="line" d="M1305 1385 H1415 V1560 H1460"/>
+  <text class="label" x="1345" y="1355">需要</text>
+  <path class="line" d="M1305 1418 H1410 V1845 H520"/>
+  <text class="label" x="1345" y="1462">不需要</text>
+  <path class="line" d="M1710 1560 H1825"/>
+  <path class="line" d="M2075 1560 H2190"/>
+  <path class="line" d="M2440 1560 H2555"/>
+  <path class="line" d="M2680 1605 V1655"/>
+  <path class="line" d="M2455 1725 H2370"/>
+  <text class="label" x="2392" y="1695">命中</text>
+  <path class="line" d="M2455 1750 H1905"/>
+  <text class="label" x="2360" y="1792">未命中</text>
+
+  <rect class="section" x="90" y="1825" width="3020" height="500"/>
+  <text class="section-title" x="130" y="1875">4. Prompt / State 构建与 Agent 执行</text>
+
+  <rect class="core" x="300" y="1985" width="440" height="120"/>
+  <text class="box-title" x="405" y="2032">Prompt / State 构建</text>
+  <text class="box-text" x="350" y="2068">用户输入 + 附件 + RAG + 权限上下文</text>
+
+  <rect class="core" x="970" y="1985" width="450" height="120"/>
+  <text class="box-title" x="1110" y="2032">Agent Executor</text>
+  <text class="box-text" x="1025" y="2068">Plan / Thought / Action / Observation</text>
+
+  <rect class="tool" x="1630" y="1905" width="1260" height="270"/>
+  <text class="box-title" x="1680" y="1952">能力池</text>
+  <text class="box-text" x="1680" y="1990">API 插件 / MCP 插件 / 工作流 / 子 Agent</text>
+  <text class="box-text" x="1680" y="2028">文件处理 / 数据查询 / 业务系统工具 / 部门知识库</text>
+  <text class="box-text" x="1680" y="2066">工具选择依据: 任务目标、权限、参数完整性、工具 Schema</text>
+
+  <polygon class="decision" points="1195,2148 1445,2225 1195,2302 945,2225"/>
+  <text class="box-title" x="1082" y="2220">执行结果是否足够?</text>
+  <text class="box-text" x="1110" y="2252">可回答 / 需终止</text>
+
+  <path class="line" d="M2240 1750 V1805 H520 V1985"/>
+  <path class="line" d="M1685 1750 V1805 H520 V1985"/>
+  <path class="line" d="M740 2045 H970"/>
+  <path class="line" d="M1420 2045 H1630"/>
+  <path class="soft-line" d="M2260 2175 V2225 H1445"/>
+  <path class="line" d="M1195 2105 V2148"/>
+
+  <rect class="section" x="90" y="2395" width="3020" height="135"/>
+  <text class="section-title" x="130" y="2448">5. 单轮返回</text>
+
+  <rect class="result" x="640" y="2418" width="430" height="85"/>
+  <text class="box-title" x="750" y="2472">结果汇总</text>
+
+  <rect class="result" x="1340" y="2418" width="430" height="85"/>
+  <text class="box-title" x="1448" y="2472">最终回答</text>
+
+  <rect class="box" x="2040" y="2418" width="430" height="85"/>
+  <text class="box-title" x="2145" y="2472">返回用户</text>
+
+  <rect class="note" x="2555" y="2398" width="475" height="115"/>
+  <text class="box-title" x="2595" y="2445">单轮 Agent 约束</text>
+  <text class="box-text" x="2595" y="2482">缺参只返回澄清问题, 不进入多轮追问闭环。</text>
+
+  <path class="line" d="M1195 2302 V2380 H855 V2418"/>
+  <text class="label" x="1218" y="2350">足够</text>
+  <path class="line" d="M1070 2460 H1340"/>
+  <path class="line" d="M1770 2460 H2040"/>
+  <path class="dash-line" d="M945 2225 H730 V2478 H640"/>
+
+  <text class="small" x="120" y="2570">v1 定稿范围: 保留原型主链路, 补充 RAG 判断逻辑与单轮 Agent 缺参结束逻辑。</text>
+</svg>
